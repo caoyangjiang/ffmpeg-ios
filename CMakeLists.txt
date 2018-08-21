@@ -15,12 +15,13 @@ endif()
 
 
 set(url "https://s3-us-west-2.amazonaws.com/ffmpeg-ios/ffmpeg-ios-3.4.2.zip")
-set(md5 "0964b77d1f94243f93eea7cdf151fa9c")
+set(md5 "0821e8b2058713194058c31d0fbc5036")
 
 if( NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-ios.zip )
   message("Download from ${url}")
   file(DOWNLOAD ${url} ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-ios.zip
         EXPECTED_MD5 ${md5}
+        SHOW_PROGRESS
   )
 endif()
 
@@ -46,43 +47,43 @@ file(WRITE ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake
   "set(FFMPEG_IOS_LIBRARY_DIR \"${CMAKE_INSTALL_PREFIX}/lib\")\n"
   "\n"
   "find_library(AVCODEC_IOS\n"
-  "  NAMES avcodec_ios\n"
+  "  NAMES avcodec\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(AVDEVICE_IOS\n"
-  "  NAMES avdevice_ios\n"
+  "  NAMES avdevice\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(AVFILTER_IOS\n"
-  "  NAMES avfilter_ios\n"
+  "  NAMES avfilter\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(AVFORMAT_IOS\n"
-  "  NAMES avdevice_ios\n"
+  "  NAMES avdevice\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(AVUTIL_IOS\n"
-  "  NAMES avutil_ios\n"
+  "  NAMES avutil\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(SWRESAMPLE_IOS\n"
-  "  NAMES swresample_ios\n"
+  "  NAMES swresample\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
   "\n"
   "find_library(SWSCALE_IOS\n"
-  "  NAMES swscale_ios\n"
+  "  NAMES swscale\n"
   "  PATHS \${FFMPEG_IOS_LIBRARY_DIR}\n"
   "  NO_DEFAULT_PATH\n"
   "  NO_CMAKE_FIND_ROOT_PATH)\n"
@@ -102,10 +103,10 @@ install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake
         DESTINATION lib/cmake/${CMAKE_PROJECT_NAME})
 
 
-install(FILES ${CMAKE_BINARY_DIR}/lib/libavcodec_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libavdevice_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libavfilter_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libavformat_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libavutil_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libswresample_ios.a DESTINATION lib)
-install(FILES ${CMAKE_BINARY_DIR}/lib/libswscale_ios.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libavcodec.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libavdevice.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libavfilter.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libavformat.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libavutil.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libswresample.a DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/lib/libswscale.a DESTINATION lib)
